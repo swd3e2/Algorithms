@@ -1,7 +1,8 @@
 #include <iostream>
-#include "1.h"
+#include "src/1.h"
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	cout << "Enter pair of numbers, e.g. 3 4" << endl;
+	fast_union();
 }
