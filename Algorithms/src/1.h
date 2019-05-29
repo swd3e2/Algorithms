@@ -1,19 +1,19 @@
 #pragma once
 #include <iostream>
+#define SIZE 10
 
 using namespace ::std;
 
 void fast_find()
 {
-	const int size = 100;
-	int i, p, q, id[size];
-	for (i = 0; i < size; i++) id[i] = i;
+	int i, p, q, id[SIZE];
+	for (i = 0; i < SIZE; i++) id[i] = i;
 
 	while (cin >> p >> q)
 	{
 		if (id[p] == id[q]) continue;
 
-		for (i = 0; i < size; i++)
+		for (i = 0; i < SIZE; i++)
 			if (id[i] == id[p]) id[i] = id[q];
 
 		cout << "Added new pair " << p << " " << q << endl;
@@ -22,9 +22,8 @@ void fast_find()
 
 void fast_union()
 {
-	const int size = 100;
-	int i, j, p, q, id[size];
-	for (i = 0; i < size; i++) id[i] = i;
+	int i, j, p, q, id[SIZE];
+	for (i = 0; i < SIZE; i++) id[i] = i;
 
 	while (cin >> p >> q)
 	{
@@ -38,9 +37,8 @@ void fast_union()
 
 void weighed_fast_union()
 {
-	const int size = 100;
-	int i, j, p, q, id[size], sz[size];
-	for (i = 0; i < size; i++) { id[i] = i; sz[i] = 1; }
+	int i, j, p, q, id[SIZE], sz[SIZE];
+	for (i = 0; i < SIZE; i++) { id[i] = i; sz[i] = 1; }
 
 	while (cin >> p >> q)
 	{
@@ -60,9 +58,8 @@ void weighed_fast_union()
 
 void weighed_fast_union_half()
 {
-	const int size = 100;
-	int i, j, p, q, id[size], sz[size];
-	for (i = 0; i < size; i++) { id[i] = i; sz[i] = 1; }
+	int i, j, p, q, id[SIZE], sz[SIZE];
+	for (i = 0; i < SIZE; i++) { id[i] = i; sz[i] = 1; }
 
 	while (cin >> p >> q)
 	{
