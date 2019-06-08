@@ -1,26 +1,27 @@
 #include <iostream>
 #include "src/1.h"
 #include "src/2.h"
+#include <math.h>
+#include "src/3.h"
+#include "src/sort.h"
+#include "src/4.h"
+#include "src/bst.h"
 
-int main()
+int main(int agrc, char** args)
 {
-	//flavarr(5);
+	int a[] = { 3, 4, 5, 6, 7, 8, 9 };
 
-	node* nod = new node(1, nullptr);
-	node* last = nod;
+	BST tree(100);
 
-	for (int i = 2; i <= 4; i++) {
-		last = (last->next = new node(i, nullptr));
-	}
+	tree.insert(41);
+	tree.insert(20);
+	tree.insert(65);
+	tree.insert(50);
+	tree.insert(11);
+	tree.insert(29);
+	tree.insert(26);
+	tree.insert(23);
+	tree.insert(55);
 
-	node* nod2 = new node(5, nullptr);
-	last = nod2;
-
-	for (int i = 2; i <= 4; i++) {
-		last = (last->next = new node(i + 4, nullptr));
-	}
-
-	merge_linked_lists(nod, nod2);
-
-	reverse_linked_list(nod);
+	std::cin.get();
 }

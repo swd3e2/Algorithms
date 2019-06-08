@@ -24,6 +24,10 @@
   <ItemGroup>
     <ClInclude Include="src\1.h" />
     <ClInclude Include="src\2.h" />
+    <ClInclude Include="src\3.h" />
+    <ClInclude Include="src\4.h" />
+    <ClInclude Include="src\bst.h" />
+    <ClInclude Include="src\sort.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
