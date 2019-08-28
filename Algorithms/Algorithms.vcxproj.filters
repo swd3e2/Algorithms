@@ -18,7 +18,9 @@
     <ClInclude Include="src\SelectSort.h" />
     <ClInclude Include="src\HeapSort.h" />
     <ClInclude Include="src\InsertSort.h" />
-    <ClInclude Include="src\Quicksort.h" />
     <ClInclude Include="src\AVLTree.h" />
+    <ClInclude Include="src\QuickSort.h" />
+    <ClInclude Include="src\utility.h" />
+    <ClInclude Include="src\CountingSort.h" />
   </ItemGroup>
 </Project>

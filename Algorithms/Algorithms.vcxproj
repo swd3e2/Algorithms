@@ -28,16 +28,18 @@
     <ClInclude Include="src\BinomialQueue.h" />
     <ClInclude Include="src\AVLTree.h" />
     <ClInclude Include="src\BubbleSort.h" />
+    <ClInclude Include="src\CountingSort.h" />
     <ClInclude Include="src\HeapQueue.h" />
     <ClInclude Include="src\HeapSort.h" />
     <ClInclude Include="src\InsertSort.h" />
     <ClInclude Include="src\MergeSort.h" />
-    <ClInclude Include="src\Quicksort.h" />
+    <ClInclude Include="src\QuickSort.h" />
     <ClInclude Include="src\RadixSort.h" />
     <ClInclude Include="src\SelectSort.h" />
     <ClInclude Include="src\ShellSort.h" />
     <ClInclude Include="src\sort.h" />
     <ClInclude Include="src\string.h" />
+    <ClInclude Include="src\utility.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

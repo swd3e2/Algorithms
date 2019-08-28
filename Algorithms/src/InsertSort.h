@@ -3,9 +3,9 @@
 namespace InsertSort
 {
 	template<typename T>
-	void insertSort(T* data, int size)
+	void insertSort(T* data, const int l, const int r)
 	{
-		for (int i = 0; i < 13; i++) {
+		for (int i = l; i < r; i++) {
 			int c = i;
 			while (data[c] > data[c + 1] && c > 0) {
 				int temp = data[c];
@@ -36,7 +36,7 @@ namespace InsertSort
 
 			for (int j = i; j > left; --j) {
 				T temp = data[j - 1];
-				data[j - 1] = a[j];
+				data[j - 1] = data[j];
 				data[j] = temp;
 			}
 		}
