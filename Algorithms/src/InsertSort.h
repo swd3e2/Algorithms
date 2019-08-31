@@ -3,7 +3,7 @@
 namespace InsertSort
 {
 	template<typename T>
-	void insertSort(T* data, const int l, const int r)
+	void sort(T* data, const int l, const int r)
 	{
 		for (int i = l; i < r; i++) {
 			int c = i;
@@ -17,7 +17,7 @@ namespace InsertSort
 	}
 
 	template<typename T>
-	void binaryInsertSort(T* data, const int size)
+	void binarySort(T* data, const int size)
 	{
 		for (int i = 1; i < size; i++) {
 			T tempVal = data[i];

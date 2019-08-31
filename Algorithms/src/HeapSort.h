@@ -53,4 +53,61 @@ namespace HeapSort
 			counter--;
 		}
 	}
+
+	namespace Pyramid
+	{
+		void exch(int* a, int l, int r)
+		{
+			int temp = a[l];
+			a[l] = a[r];
+			a[r] = temp;
+		}
+
+		void fixUp(int* a, int k, int size)
+		{
+			while (k / 2 >= 0) {
+				int val = a[k];
+				int j = k != 1 ? k / 2 : 0;
+				if (val > a[j]) {
+					exch(a, k, j);
+				}
+				if (k == 0) break;
+				k = j;
+			}
+		}
+
+		void fixDown(int* a, int k, int size)
+		{
+			while (k * 2 < size) {
+				int val = a[k];
+				int j = k * 2;
+				if (a[j] < a[j + 1]) j = j + 1;
+				if (val < a[j]) {
+					exch(a, k, j);
+				}
+				k = j;
+			}
+		}
+	}
+
+	int test()
+	{
+		int a[] = { 1,2,35,12,123,543,346,2,0,7,9,5,4,3, 16, 29, 31, 32 };
+		int size = sizeof(a) / 4;
+		int arr[19];
+		for (int i = 0; i < size; i++) {
+			arr[i] = a[i];
+		}
+
+		for (int i = size / 2; i >= 0; i--) {
+			Pyramid::fixDown(arr, i, size);
+		}
+		arr[18] = 800;
+		Pyramid::fixUp(arr, 18, size);
+		while (size > 0) {
+			Pyramid::exch(arr, 0, size--);
+			Pyramid::fixDown(arr, 0, size);
+		}
+		std::cin.get();
+	}
 }

@@ -2,11 +2,9 @@
 #include "utility.h"
 #include "InsertSort.h"
 
-#define bin(A) l + count[A]
-
 namespace RadixSort
 {
-	inline void radixSort()
+	inline void sort()
 	{
 		int a[] = { 1,2,35,12,123,543,346,2,1,7,9,5,4,3 };
 		int val = 0;
@@ -33,10 +31,20 @@ namespace RadixSort
 		}
 	}
 
-	template<typename T>
-	void MSDRadixSort(T* data, int l, int r, int d)
+	int getMax(int* array, int size)
 	{
-		static const int maxN = 100;
+		int max = array[0];
+		for (int i = 0; i < size; i++) {
+			if (max < array[i]) max = array[i];
+		}
+		return max;
+	}
+
+	template<typename T>
+	void MSDSort(T* data, int l, int r, int d)
+	{
+		static const int R = 10;
+		static const int maxN = 1000;
 		static const int M = 4;
 		
 		int i, j;
@@ -44,24 +52,25 @@ namespace RadixSort
 		static T aux[maxN];
 
 		if (d > bytesword) return;
-		if (r - l <= M) 
-		{
-			InsertSort::insertSort(data, l, r);
-			return;
+		if (l >= r) return;
+		int max = getMax(data, r - l + 1);
+		int maxDigit = 0;
+		while ((max /= 10) > 0) {
+			maxDigit++;
 		}
 		memset(count, 0, sizeof(int) * R + 1);
-		for(int i = 0; i <= r; i++)
-			count[digit(data[i], d) + 1]++;
+		for(int i = 1; i <= r; i++)
+			count[digit(data[i], maxDigit - d) + 1]++;
 		
 		for(j = 1; j < R; j++)
 			count[j] += count[j - 1];
 		
 		for (i = l; i <= r; i++)
-			aux[l + count[digit(data[i], d)]++] = data[i];
+			aux[l + count[digit(data[i], maxDigit - d)]++] = data[i];
 
 		for (i = l; i <= r; i++) data[i] = aux[i];
-		MSDRadixSort(data, l, bin(0) - 1, d + 1);
+		MSDSort(data, l, l + count[0] - 1, d + 1);
 		for (j = 0; j < R - 1; j++)
-			MSDRadixSort(data, bin(j), bin(j + 1) - 1, d + 1);
+			MSDSort(data, l + count[j], l + count[j + 1] - 1, d + 1);
 	}
 }

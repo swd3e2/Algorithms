@@ -3,7 +3,7 @@
 namespace ShellSort
 {
 	template<typename T>
-	void shell_sort(T* data, const int size)
+	void sort(T* data, const int size)
 	{
 		int h;
 		for (h = 1; h < size / 9; h = 3 * h + 1);

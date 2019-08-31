@@ -3,11 +3,11 @@
 
 namespace CountingSort
 {
-	void countingSort(int* data, int l, int r, size_t max)
+	void sort(int* data, int l, int r, size_t max)
 	{
 		int i, j;
-		int* cnt = new int[max + 2];
-		int* temp = new int[r - l];
+		int* cnt = new int[max + 1];
+		int* temp = new int[r - l + 1];
 
 		memset(cnt, 0, sizeof(int) * (max + 1));
 		for (i = l; i <= r; i++)

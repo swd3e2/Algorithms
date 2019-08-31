@@ -20,12 +20,12 @@ namespace MergeSort
 		}
 	}
 
-	void mergesort(int* a, int l, int r)
+	void sort(int* a, int l, int r)
 	{
 		if (l >= r) return;
 		int m = (r + l) / 2;
-		mergesort(a, l, m);
-		mergesort(a, m + 1, r);
+		sort(a, l, m);
+		sort(a, m + 1, r);
 		merge_sort_internal(a, l, m, r);
 	}
 }

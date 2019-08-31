@@ -3,7 +3,7 @@
 namespace SelectSort
 {
 	template<typename T>
-	void selectSort(T* data, int size)
+	void sort(T* data, int size)
 	{
 		int min = 0;
 
