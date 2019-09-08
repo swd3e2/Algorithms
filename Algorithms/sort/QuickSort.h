@@ -43,7 +43,6 @@ namespace QuickSort
 
 	/**
 	 * Not working properly
-	 * \tparam T 
 	 * \param a 
 	 * \param l 
 	 * \param r 

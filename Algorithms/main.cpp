@@ -1,55 +1,84 @@
 #include <iostream>
-#include "src/RadixSort.h"
-#include "src/utility.h"
-#include "src/QuickSort.h"
-#include "src/CountingSort.h"
+#include "search/BSTTree.h"
+#include "search/SearchTree.h"
+#include "search/AVLTree.h"
+#include "search/RBTree.h"
+#include "search/SkipList.h"
+#include "search/HashMap.h"
 
-int getMax(int* array, int size)
+struct Key
 {
-	int max = array[0];
-	for (int i = 0; i < size; i++) {
-		if (max < array[i]) max = array[i];
-	}
-	return max;
-}
+	int key;
 
-void countSort(int* array, int size) {
-	int* output = new int[size + 1];
-	int max = getMax(array, size);
-	int* count = new int[max + 1];     //create count array (max+1 number of elements)
-	for (int i = 0; i <= max; i++)
-		count[i] = 0;     //initialize count array to all zero
-	for (int i = 0; i <= size; i++)
-		count[array[i] + 1]++;     //increase number count in count array.
-	for (int i = 1; i <= max; i++)
-		count[i] += count[i - 1];     //find cumulative frequency
-	for (int i = size; i >= 0; i--)
-		output[count[array[i]]++] = array[i];
-	
-	for (int i = 0; i <= size; i++) {
-		array[i] = output[i]; //store output array to main array
-	}
-}
+	Key(int key) :
+		key(key)
+	{}
 
-int getbit(int number, int digit)
+	bool operator<(const Key& other) const
+	{
+		return key < other.key;
+	}
+};
+
+struct Item
 {
-	return (number >> digit) & 1;
-}
+	int val;
+	Key k;
+
+	Item(int val) :
+		val(val), k(val)
+	{}
+
+	const Key& key() const
+	{
+		return k;
+	}
+
+	void show(std::ostream& os)
+	{
+		std::cout << val << std::endl;
+	}
+};
+
+std::ostream& operator<<(std::ostream& os, const Item& item) { os << item.key().key << std::endl; return os; }
+
+class MyString
+{
+private:
+	char* data;
+	mutable bool isValid;
+public:
+	MyString(const char* string) :
+		isValid(true)
+	{
+		data = new char[strlen(string) + 1];
+		memcpy(data, string, strlen(string) + 1);
+	}
+
+	char& operator[](const size_t position) 
+	{
+		return const_cast<char&>(static_cast<const MyString&>(*this)[position]);
+	}
+
+	const char& operator[](const size_t position) const
+	{
+		isValid = false;
+		return data[position];
+	}
+};
 
 int main(void)
 {
-	//int a[] = { 1,2,35,12,123,543,346,2,0,7,9,5,4,3, 16, 29, 31, 32 };
-	//int a[] = { 6, 5, 6, 2, 3, 10, 3, 6, 7, 8 };
-	int a[] = { 3,2,1,0,0,3,2 };
-	const int size = sizeof(a) / 4;
-	countSort(a, size - 1);
-	CountingSort::sort(a, 0, size - 1, 4);
-	int kek = 342342;
-	
+	MyString string("musicked maximums");
+	string[0] = '1';
 
-	std::cout << digit(kek, 6) << std::endl;
-	//char temp[] = { 'A', 'S', 'O', 'R', 'T', 'I', 'N', 'G', 'E', 'X', 'A', 'M', 'P', 'L', 'E','\0'};
-	int temp[] = { 224, 61, 66, 221, 22, 62, 254, 26, 231, 230 };
-	RadixSort::MSDSort(temp, 0, 10 - 1, 0);
+	SkipList::SkipList<Item, Key> list;
+
+	HashMap::HashMap<int, int> map;
+	for (int i = 10; i < 100; i++)
+		map.insert(i, i);
+
+	map[10] = 12;
+
 	std::cin.get();
 }

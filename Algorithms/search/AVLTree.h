@@ -30,8 +30,7 @@ namespace AVLTree
 		{
 			if (n == nullptr) {
 				return 0;
-			}
-			else {
+			} else {
 				return std::max(height(n->right), height(n->left)) + 1;
 			}
 		}
@@ -71,11 +70,11 @@ namespace AVLTree
 
 		Node* insert(int val)
 		{
-			if (rootNode == nullptr) {
+			if (rootNode == nullptr) 
+			{
 				rootNode = A[counter++] = new Node(val);
 				return rootNode;
-			}
-			else {
+			} else {
 				return insertInternal(val, rootNode);
 			}
 		}
@@ -86,11 +85,9 @@ namespace AVLTree
 
 			if (node->right == nullptr && val >= node->val) {
 				node->right = new Node(val);
-			}
-			else if (node->left == nullptr && val <= node->val) {
+			} else if (node->left == nullptr && val <= node->val) {
 				node->left = new Node(val);
-			}
-			else if (val >= node->val) {
+			} else if (val >= node->val) {
 				temp = insertInternal(val, node->right);
 				if (temp != nullptr) {
 					node->right = temp;
@@ -99,13 +96,11 @@ namespace AVLTree
 				if (!isBalanced(node)) {
 					if (val > node->right->val) {
 						temp = rightRotate(node);
-					}
-					else {
+					} else {
 						temp = doubleRightRotate(node);
 					}
 				}
-			}
-			else if (val <= node->val) {
+			} else if (val <= node->val) {
 				temp = insertInternal(val, node->left);
 				if (temp != nullptr) {
 					node->left = temp;
@@ -114,8 +109,7 @@ namespace AVLTree
 				if (!isBalanced(node)) {
 					if (val < node->left->val) {
 						temp = leftRotate(node);
-					}
-					else {
+					} else {
 						temp = doubleLeftRotate(node);
 					}
 				}

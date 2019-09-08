@@ -41,7 +41,7 @@ namespace RadixSort
 	}
 
 	template<typename T>
-	void MSDSort(T* data, int l, int r, int d)
+	void MSDSort(T* data, int l, int r, int d, int maxDigit = -1)
 	{
 		static const int R = 10;
 		static const int maxN = 1000;
@@ -53,13 +53,16 @@ namespace RadixSort
 
 		if (d > bytesword) return;
 		if (l >= r) return;
-		int max = getMax(data, r - l + 1);
-		int maxDigit = 0;
-		while ((max /= 10) > 0) {
-			maxDigit++;
+		if (maxDigit < 0) {
+			maxDigit = 0;
+			int max = getMax(data, r - l + 1);
+			while ((max /= 10) > 0) {
+				maxDigit++;
+			}
 		}
+		
 		memset(count, 0, sizeof(int) * R + 1);
-		for(int i = 1; i <= r; i++)
+		for(int i = l; i <= r; i++)
 			count[digit(data[i], maxDigit - d) + 1]++;
 		
 		for(j = 1; j < R; j++)
@@ -69,8 +72,35 @@ namespace RadixSort
 			aux[l + count[digit(data[i], maxDigit - d)]++] = data[i];
 
 		for (i = l; i <= r; i++) data[i] = aux[i];
-		MSDSort(data, l, l + count[0] - 1, d + 1);
-		for (j = 0; j < R - 1; j++)
-			MSDSort(data, l + count[j], l + count[j + 1] - 1, d + 1);
+		MSDSort(data, l, l + count[0] - 1, d + 1, maxDigit);
+		for (j = 0; j < 10; j++)
+			MSDSort(data, l + count[j], l + count[j + 1] - 1, d + 1, maxDigit);
+	}
+
+	template<typename T>
+	void LSDSort(T* data, const int l, const int r)
+	{
+		static const int maxN = 1000;
+		static T aux[maxN];
+
+		int maxDigit = 0;
+		int max = getMax(data, r - l + 1);
+		while ((max /= 10) > 0) {
+			maxDigit++;
+		}
+
+		for (int d = 0; d <= maxDigit; d++) {
+			int i, j;
+			int* count = new int[maxDigit];
+			memset(count, 0, sizeof(int) * R + 1);
+			for (int i = l; i <= r; i++)
+				count[digit(data[i], d) + 1]++;
+			for (j = 1; j < R; j++)
+				count[j] += count[j - 1];
+			for (i = l; i <= r; i++)
+				aux[l + count[digit(data[i], d)]++] = data[i];
+			for (i = l; i <= r; i++) 
+				data[i] = aux[i];
+		}
 	}
 }
